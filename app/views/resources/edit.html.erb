@@ -1,12 +1,15 @@
-<h1>Add a new Resource </h1>
+<h2>Edit your Resource</h2>
+
 
 <% if @resource.errors.any? %>
-<h3>There were some errors in your resource</h3>
-<ul>
-  <% @resource.errors.full_messages.each do |msg| %>
-  <li><%= msg %></li>
+
+<h2>The following errors prevented the article from being uploaded</h2>
+
+  <ul>
+      <% @resource.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
   <% end %>
-</ul>
+  </ul>
 <% end %>
 
 

@@ -1,0 +1,28 @@
+<h2> This is a list of all resources that are on the system</h2>
+
+<p>
+<%= link_to "Create new resource", new_resource_path %>
+</p>
+
+<table>
+<tr>
+  <th>Name</th>
+  <th>Type</th>
+  <th>Description</th>
+</tr>
+
+<% @resources.each do |resource| %>
+
+  <tr>
+<td><%= resource.name %></td>
+<td><%= resource.resource_type %></td>
+<td><%= resource.description %></td>
+
+<td><%= link_to 'Edit', edit_resource_path(resource) %></td>
+<td><%= link_to 'Show', resource_path(resource) %></td>
+
+  </tr>
+
+<% end %>
+
+</table>
