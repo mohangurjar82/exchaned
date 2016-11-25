@@ -5,12 +5,18 @@ class ResourcesController < ApplicationController
  end
   
   def create
-    #render plain: params[:resource].inspect
     @resource = Resource.new(resource_params)
-    @resource.save
-    redirect_to resource_show(@resource)
+    if @resource.save
+    flash[:notice] = "Your Resource has been saved sucessfully"
+    redirect_to resource_path(@resource)
+  else
+    render 'new'
+    end
   end
   
+  def show
+  @resource = Resource.find(params[:id])
+  end
   
   private
   def resource_params

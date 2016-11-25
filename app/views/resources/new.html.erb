@@ -1,4 +1,14 @@
-<h1>This is my new resources page </h1>
+<h1>Add a new Resource </h1>
+
+<% if @resource.errors.any? %>
+<h3>There were some errors in your resource</h3>
+<ul>
+  <% @resource.errors.full_messages.each do |msg| %>
+  <li><%= msg %></li>
+  <% end %>
+</ul>
+<% end %>
+
 
 <%= form_for @resource do |f| %>
   <p>
