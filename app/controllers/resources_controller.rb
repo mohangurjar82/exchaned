@@ -1,4 +1,6 @@
 class ResourcesController < ApplicationController
+  
+  before_action :set_resource, only: [:edit, :update, :show, :destroy]
  
  def new
    @resource = Resource.new
@@ -6,12 +8,12 @@ class ResourcesController < ApplicationController
   
   
   def edit
-  @resource =Resource.find(params[:id])
+  
   end
   
   
   def update
-    @resource = Resource.find(params[:id])
+    
     if @resource.update(resource_params)
       flash[:notice] = "Your Resource was successfully updated"
       redirect_to resource_path(@resource)
@@ -31,7 +33,7 @@ class ResourcesController < ApplicationController
   end
   
   def show
-  @resource = Resource.find(params[:id])
+  
   end
   
   
@@ -40,7 +42,7 @@ class ResourcesController < ApplicationController
   end
   
   def destroy
-  @resource = Resource.find(params[:id])
+  
   @resource.destroy
   flash[:notice] ="Your resource was deleted"
   redirect_to resources_path
@@ -52,5 +54,7 @@ class ResourcesController < ApplicationController
     params.require(:resource).permit(:name, :resource_type, :description)
   end
   
-  
+  def set_resource
+    @resource = Resource.find(params[:id])
+  end  
 end
