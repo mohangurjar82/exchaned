@@ -39,6 +39,13 @@ class ResourcesController < ApplicationController
     @resources = Resource.all
   end
   
+  def destroy
+  @resource = Resource.find(params[:id])
+  @resource.destroy
+  flash[:notice] ="Your resource was deleted"
+  redirect_to resources_path
+  
+  end
   
   private
   def resource_params
