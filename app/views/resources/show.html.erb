@@ -1,16 +1,13 @@
-<h1> Showing your resource</h1>
-
-<p>
-  Name: <%= @resource.name %>
-</p>
-
-<p>
-  Description: <%= @resource.description %>
-</p>
-
-<p>
-  Resource Type: <%= @resource.resource_type %>
-</p>
-
-<%= link_to 'Edit resource', edit_resource_path(@resource) %> |
-<%= link_to 'Back to Resource Listing', resources_path %>
+<h2 align="center">Resource Name: <%= @resource.name %></h2>
+  <div class="well col-xs-8 col-xs-offset-2">
+    <h4 class="center description"><strong>Resource Description:</strong></h4>
+      <hr>
+        <%= simple_format(@resource.description) %>
+        <div class="resource-show">
+          <%= link_to "Edit your Resource", edit_resource_path(@resource), class: "btn btn-xs btn-primary" %>
+          <%= link_to "Delete your Resource", resource_path(@resource), method: :delete,
+                                              data: { confirm: "This Resource will now be deleted?"},
+          class: "btn btn-xs btn-danger" %>
+          <%= link_to "View all Resources", resources_path, class: "btn btn-xs btn-success" %>
+      </div>
+    </div>

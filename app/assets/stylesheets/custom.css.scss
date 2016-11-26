@@ -72,3 +72,30 @@ footer li {
   float: left;
   margin-left: 20px;
 }
+
+.resource-show {
+  padding-top: 6px;
+  border-top: 3px solid #28a2b5;
+}
+
+.description {
+  margin-top: 2px;
+  color: #28a2b5;
+}
+
+.resource-name {
+font-weight: bold;
+font-size: 1.5em;
+}
+
+.resource-body {
+border-top: 1px solid #28a2b5;
+padding-top: 15px;
+padding-bottom: 15px;
+}
+
+.resource-type {
+  border-top: 2px solid #28a2b5;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}

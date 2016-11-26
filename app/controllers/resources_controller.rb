@@ -15,7 +15,7 @@ class ResourcesController < ApplicationController
   def update
     
     if @resource.update(resource_params)
-      flash[:notice] = "Your Resource was successfully updated"
+      flash[:success] = "Your Resource was successfully updated"
       redirect_to resource_path(@resource)
     else
       render 'edit'
@@ -25,7 +25,7 @@ class ResourcesController < ApplicationController
   def create
     @resource = Resource.new(resource_params)
     if @resource.save
-    flash[:notice] = "Your Resource has been saved sucessfully"
+    flash[:success] = "Your Resource has been saved sucessfully"
     redirect_to resource_path(@resource)
   else
     render 'new'
@@ -33,7 +33,7 @@ class ResourcesController < ApplicationController
   end
   
   def show
-  
+
   end
   
   
@@ -44,7 +44,7 @@ class ResourcesController < ApplicationController
   def destroy
   
   @resource.destroy
-  flash[:notice] ="Your resource was deleted"
+  flash[:danger] ="Your resource was deleted"
   redirect_to resources_path
   
   end

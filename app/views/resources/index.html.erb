@@ -1,29 +1,25 @@
-<h2> This is a list of all resources that are on the system</h2>
+<h2 align="center"> All Resources available are shown below</h2>
 
-<p>
-<%= link_to "Create new resource", new_resource_path %>
-</p>
-
-<table>
-<tr>
-  <th>Name</th>
-  <th>Type</th>
-  <th>Description</th>
-</tr>
-
-<% @resources.each do |resource| %>
-
-  <tr>
-<td><%= resource.name %></td>
-<td><%= resource.resource_type %></td>
-<td><%= resource.description %></td>
-
-<td><%= link_to 'Edit', edit_resource_path(resource) %></td>
-<td><%= link_to 'Show', resource_path(resource) %></td>
-<td><%= link_to 'Delete', resource_path(resource), method: :delete, data: {confirm: "Are you sure you wish to delete this?"} %></td>
-
-  </tr>
-
+    <% @resources.each do |resource| %>
+    <div class="row">
+      <div class="col-xs-8 col-xs-offset-2">
+        <div class="well well-lg">
+          <div class="resource-name">
+            <h4>Name: <%= link_to resource.name, resource_path(resource) %></h4>
+          </div>
+        <div class="resource-body">
+        <h4>Description: <%= truncate(resource.description, length: 80) %></h4>
+        </div>
+          <div class="resource-type">
+        <h4>Resource Type: <%= resource.resource_type %></h4>
+        </div>
+      <div class="resource-show">
+      <%= link_to "Edit this Resource", edit_resource_path(resource), class: "btn btn-xs btn-primary" %>
+      <%= link_to "Delete this Resource", resource_path(resource), method: :delete,
+                                        data: { confirm: "This resource will be deleted?"},
+                                        class: "btn btn-xs btn-danger" %>
+        </div>
+      </div>
+    </div>
+  </div>
 <% end %>
-
-</table>
