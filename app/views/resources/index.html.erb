@@ -12,6 +12,9 @@
         </div>
           <div class="resource-type">
         <h4>Resource Type: <%= resource.resource_type %></h4>
+        <small> Uploaded by: <%= resource.user.username if resource.user %>,
+                <%= time_ago_in_words(resource.created_at) %> ago
+        </small>
         </div>
       <div class="resource-show">
       <%= link_to "Edit this Resource", edit_resource_path(resource), class: "btn btn-xs btn-primary" %>
