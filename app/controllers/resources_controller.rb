@@ -24,6 +24,7 @@ class ResourcesController < ApplicationController
   
   def create
     @resource = Resource.new(resource_params)
+    @resource.user = User.first
     if @resource.save
     flash[:success] = "Your Resource has been saved sucessfully"
     redirect_to resource_path(@resource)
