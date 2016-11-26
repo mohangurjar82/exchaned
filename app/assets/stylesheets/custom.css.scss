@@ -1,0 +1,74 @@
+ $navbar-default-bg: #28a2b5;
+ 
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
+ 
+ #exlogo {
+   float: left;
+   font-size: 1.6em;
+   color: #fff;
+   text-transform: uppercase;
+   letter-spacing: -1.5px;
+   font-weight: bold;
+   
+ }
+
+#exlogo:hover {
+  
+  color: #4f6b6f;
+  text-decoration: none;
+}
+
+.center {
+  text-align: center;
+  
+}
+
+.jumbotron {
+  height: 800px;
+}
+
+#homeheading  {
+   -webkit-text-stroke: 1px black;
+   color: #28a2b5;
+   text-shadow:
+       3px 3px 0 #000,
+     -1px -1px 0 #000,  
+      1px -1px 0 #000,
+      -1px 1px 0 #000,
+       1px 1px 0 #000;
+}
+
+
+.btn-xlarge {
+  font-size: 4em;
+  background-color: #28a2b5;
+  margin-left: 20px;
+  margin-top: 20px;
+  width: 250px;
+  }
+ 
+footer {
+  margin-top: 30px;
+  padding-top: 4px;
+  border-top: 2px solid;
+  color: 28a2b5;
+}
+
+footer a:hover {
+  color: black;
+}
+
+footer small {
+  float: left;
+}
+
+footer ul {
+  float: right;
+  list-style: none;
+}
+
+footer li {
+  float: left;
+  margin-left: 20px;
+}
