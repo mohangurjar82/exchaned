@@ -1,6 +1,8 @@
 class ResourcesController < ApplicationController
   
   before_action :set_resource, only: [:edit, :update, :show, :destroy]
+  before_action :require_user, except: [:index, :show] 
+  before_action :require_same_user, only: [:edit, :update, :destroy]
  
  def new
    @resource = Resource.new
@@ -24,7 +26,7 @@ class ResourcesController < ApplicationController
   
   def create
     @resource = Resource.new(resource_params)
-    @resource.user = User.first
+    @resource.user = current_user
     if @resource.save
     flash[:success] = "Your Resource has been saved sucessfully"
     redirect_to resource_path(@resource)
@@ -58,4 +60,13 @@ class ResourcesController < ApplicationController
   def set_resource
     @resource = Resource.find(params[:id])
   end  
+  
+  
+    def require_same_user
+    if current_user != @resource
+      flash[:danger] = "You can only change you own resources"
+      redirect_to root_path
+    end
+   end 
 end
+
