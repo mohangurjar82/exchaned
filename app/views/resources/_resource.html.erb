@@ -1,0 +1,34 @@
+<% obj.each do |resource| %>
+
+<div class="row">
+  <div class="col-xs-8 col-xs-offset-2">    
+    <div class="well well-lg">
+      <div class="resource-name">     
+        <%= link_to resource.name, resource_path(resource) %>
+      </div>
+      
+       
+      <div class="resource-body">
+        <h6>Description: <%= truncate(resource.description, length: 100) %></h6>
+        <div class="resource-name">     
+         <h6>Resource Type: <%= resource.resource_type %></h6>
+          </div>
+            <div class="resource-meta-details">
+              <small>Created by: <%= resource.user.username if resource.user%>,
+                    <%= time_ago_in_words(resource.created_at) %> ago,
+              </small>
+            </div>
+      </div>
+  
+    <div class="resource-actions">
+    <%= link_to "Edit this resource", edit_resource_path(resource), class: "btn btn-xs btn-primary" %>
+    <%= link_to "Delete this resource", resources_path(resource), method: :delete,
+    data: { confirm: "Are you sure you want to delete the resource?"},
+  
+      class: "btn btn-xs btn-danger" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% end %>
