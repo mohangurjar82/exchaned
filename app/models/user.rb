@@ -9,6 +9,7 @@ validates :email, presence: true, length: { maximum: 50 },
            uniqueness: { case_sensitive: false },
           format: { with: VALID_EMAIL_REGEX }
 has_secure_password
+  mount_uploader :picture, PictureUploader
 
 end
   

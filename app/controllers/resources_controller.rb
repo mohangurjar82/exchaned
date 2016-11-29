@@ -45,16 +45,14 @@ class ResourcesController < ApplicationController
   end
   
   def destroy
-  
   @resource.destroy
   flash[:danger] ="Your resource was deleted"
   redirect_to resources_path
-  
   end
   
   private
   def resource_params
-    params.require(:resource).permit(:name, :resource_type, :description)
+    params.require(:resource).permit(:name, :resource_type, :description, :picture)
   end
   
   def set_resource
@@ -63,10 +61,11 @@ class ResourcesController < ApplicationController
   
   
     def require_same_user
-    if current_user != @resource
-      flash[:danger] = "You can only change you own resources"
+    if current_user != @resource.user and !current_user.admin?
+      flash[:danger] = "You can only change your own resources"
       redirect_to root_path
     end
+  
    end 
 end
 
