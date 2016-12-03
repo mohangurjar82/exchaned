@@ -1,13 +1,19 @@
 <% obj.each do |resource| %>
-
 <div class="row">
   <div class="col-xs-8 col-xs-offset-2">    
     <div class="well well-lg">
       <div class="resource-name">     
         <%= link_to resource.name, resource_path(resource) %>
       </div>
-      
-       
+      <% if logged_in? %> 
+        <% if ['jpg', 'jpeg', 'gif', 'png'].include? resource.picture.file.extension %>
+          <%= image_tag resource.picture, style: "width: 200px; height: 200px;" %><br><br>
+          <%= link_to 'Download Image', resource.picture.url, :download =>"#{resource.name}_image", class: "btn btn-primary"  %>
+        <% else %>
+          <%= File.basename(resource.picture.path)%><br><br>
+          <%= link_to 'Download file', resource.picture.url, class: "btn btn-primary" %>
+        <% end %>
+      <% end %>
       <div class="resource-body">
         <h6>Description: <%= truncate(resource.description, length: 100) %></h6>
         <div class="resource-name">     

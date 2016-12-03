@@ -21,6 +21,15 @@
   </ul>
 
 <% end %>
+  <% if logged_in? %> 
+    <% if ['jpg', 'jpeg', 'gif', 'png'].include? @resource.picture.file.extension %>
+      <%= image_tag @resource.picture, style: "width: 200px; height: 200px;" %><br><br>
+      <%= link_to 'Download Image', @resource.picture.url, :download =>"#{@resource.name}_image", class: "btn btn-primary"  %>
+    <% else %>
+      <%= File.basename(@resource.picture.path)%><br><br>
+      <%= link_to 'Download file', @resource.picture.url, class: "btn btn-primary" %>
+    <% end %>
+  <% end %>
 
   <h4 class="center description"><strong>Description:</strong></h4>
   <hr>
