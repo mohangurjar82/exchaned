@@ -30,3 +30,10 @@ Please feel free to use a different markup language if you do not plan to run
 
 
 Updatred REadme file for testing git hub upload.
+
+Resounce con and and can download further methods "can_download_resources" , "count_images_to_upload" have been added to user model
+
+On every download a record is been added to DownloadedResource
+
+For rating related functionality gem ratyrate has been added in gem file and ratings are handled by ratings controller and helper
+https://github.com/wazery/ratyrate

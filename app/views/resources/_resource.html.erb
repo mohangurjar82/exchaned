@@ -4,14 +4,24 @@
     <div class="well well-lg">
       <div class="resource-name">     
         <%= link_to resource.name, resource_path(resource) %>
+        <div class="pull-right">
+          <%= rating_for resource, 'picture' %>
+        </div>
       </div>
-      <% if logged_in? %> 
-        <% if ['jpg', 'jpeg', 'gif', 'png'].include? resource.picture.file.extension %>
-          <%= image_tag resource.picture, style: "width: 200px; height: 200px;" %><br><br>
-          <%= link_to 'Download Image', resource.picture.url, :download =>"#{resource.name}_image", class: "btn btn-primary"  %>
+      <% if logged_in? %>
+        <% if !current_user.can_download_resources? %>
+          <button type="button" disabled class="btn btn-primary">Download Image</button>
+          <p style='color: red;'> You need to upload <%= current_user.count_images_to_upload %> resources to download</p>
         <% else %>
-          <%= File.basename(resource.picture.path)%><br><br>
-          <%= link_to 'Download file', resource.picture.url, class: "btn btn-primary" %>
+          <div class="download-image">
+            <% if ['jpg', 'jpeg', 'gif', 'png'].include? resource.picture.file.extension %>
+              <%= image_tag resource.picture, style: "width: 200px; height: 200px;" %><br><br>
+              <%= link_to 'Download Image', resource.picture.url, :download =>"#{resource.name}_image", class: "btn btn-primary download resource_#{resource.id}", :data => {:id => resource.id}  %>
+            <% else %>
+              <%= File.basename(resource.picture.path)%><br><br>
+              <%= link_to 'Download file', resource.picture.url, class: "btn btn-primary" %>
+            <% end %>
+          </div>
         <% end %>
       <% end %>
       <div class="resource-body">
@@ -39,3 +49,9 @@
 </div>
 
 <% end %>
+
+<script>
+  $(".download").click(function(){
+    $.get("/resources/download?id="+$(this).data("id"));
+  });
+</script>

@@ -1,6 +1,6 @@
 class ResourcesController < ApplicationController
   
-  before_action :set_resource, only: [:edit, :update, :show, :destroy]
+  before_action :set_resource, only: [:edit, :update, :show, :destroy, :download]
   before_action :require_same_user, except: [:index, :show] 
   before_action :require_same_user, only: [:edit, :update, :destroy]
  
@@ -50,6 +50,11 @@ class ResourcesController < ApplicationController
   redirect_to resources_path
   end
   
+  def download
+    current_user.downloaded_resources.create(:resource_id => @resource.id) unless (current_user.resources.map(&:id).include? params["id"].to_i)
+    render layout: false
+  end  
+
   private
   def resource_params
     params.require(:resource).permit(:name, :resource_type, :description, :picture)
